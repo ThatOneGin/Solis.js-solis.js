@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Solis.js</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Solis.js</h1>
+  <h3>A simple front-end framework that has focus on functional programming</h3>
+  <h2>Why?</h2>
+  <p>
+    i want to learn front-end so im making
+    what javascript has saturated so much... a framework.
+  </p>
+  <div id="overview">
+    <h2>QuickStart</h2>
+    <p>Solis is primarly follows the functional paradigm, i.e, almost everything is a function.<br>
+    Here is a simple way to define a page for the root "/" and for a 404 error:</p>
+    <pre><code>
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;Solis.js overview&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div id="entry_point"&gt;&lt;/div&gt;
+  &lt;script src="solis.js"&gt;&lt;/script&gt;
+  &lt;script&gt;
+  // placeholder for the pages
+  const entry_point = document.getElementById("entry_point");
+
+  // current active page
+  // at document.location.hash
+  const page_map = router({
+    "/": div(
+      html_tag("h1", "Hello, Solis!"),
+      html_tag("a", "this goes to foo page").attr("href", "#/foo")
+    ),
+    "/foo": div(
+      html_tag("h1", "Foo page"),
+      html_tag("p", "goto 404 page ", html_tag("a", "click me!").attr("href", "#/404"))
+    ),
+    "/404": div(
+      html_tag("h1", "404: page not found."), // the href is the root page.
+      html_tag("p", "go to sweet ", html_tag("a", "home").attr("href", "#/"))
+    )
+  });
+
+  entry_point.appendChild(page_map);
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+  </code></pre>
+  </div>
+  <h2>Explanation</h2>
+  <p>
+    the div called entry_point will serve as a buffer for
+    the page content while the page_map will store the current page content.
+    the object passed through route function are the pages and its contents.
+  </p>
+  <h2>Functions</h2>
+  <h3>html_tag(tag_name, children)</h3>
+  <p>
+    this function returns a HTML object with a function called attr that can set the attribute of the object.
+  </p>
+  <h3>router(routes)</h3>
+  <p>
+    this function replaces the current document body based on the document.location.hash string.
+    If the route name doesn't exist in the routes object,
+    the body will be on the /404 page (page for 404 error code)
+  </p>
+  <h2>Good practices</h2>
+  <p>
+    As this framework has focus on functional programming,
+    i really support the use of functions to create components.
+  </p>
+  </div>
+  <h2>Github</h2>
+  <p>Github repository for the  <a href="https://github.com/ThatOneGin/Solis.js" target="_blank">Solis</a> framework</p>
+</body>
+</html>
